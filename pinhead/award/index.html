@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" /> 
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
+    <meta content="telephone=no" name="format-detection" />
+    <title>award test</title>
+    <link rel="stylesheet" href="css/index.css?123">
+</head>
+<body>
+<div class="bg">
+    <div class="lib">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="whole"></div>
+    </div>
+    <div class="can">
+        <div class=""></div>
+    </div>
+    <button>播放</button>
+    <div class="alert"></div>
+</div>
+<script src="http://js.selfimg.com.cn/gallery/zepto/1.1.4/zepto.min.js"></script>
+<script>
+function startAward(obj){
+    var lib = $('.lib'),
+        whole = lib.find('.whole'),
+        left = lib.find('.left'),
+        right = lib.find('.right');
+    lib.addClass('award-animation');
+    whole[0].addEventListener('webkitAnimationEnd', function(){
+        whole.hide();
+        left.show();
+        right.show();
+    }, false);
+    left[0].addEventListener('webkitAnimationEnd', function(){
+        left.hide();
+        right.hide();
+        obj.addClass('active');   //弹出获奖结果
+        setTimeout(function(){
+            whole.show();
+            lib.removeClass('award-animation');
+        }, 200);
+    }, false);
+}
+$('button').click(function(){
+    startAward($('.alert'));
+});
+</script>
+</body>
+</html>
